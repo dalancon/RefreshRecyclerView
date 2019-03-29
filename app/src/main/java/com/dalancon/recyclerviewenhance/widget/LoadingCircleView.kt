@@ -18,16 +18,14 @@ class LoadingCircleView : View {
     //半径
     private var mRadius = 0f
 
-    private lateinit var mPaint: Paint
+    private var mPaint = Paint()
 
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attributeSet: AttributeSet?) : this(context, attributeSet, 0)
     constructor(context: Context, attributeSet: AttributeSet?, defStyleAttr: Int) : super(context, attributeSet, defStyleAttr) {
-        mPaint = Paint()
         mPaint.isAntiAlias = true
         mPaint.isDither = true
         mPaint.color = mCurrentColor
-        //#AEEEEE
     }
 
 
