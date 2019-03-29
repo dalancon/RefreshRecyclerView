@@ -31,6 +31,8 @@ class DefaultRefreshView(var context: Context) : RefreshViewCreator() {
             animatorSet.duration = 1000
             animatorSet.playTogether(scaleX, scaleY)
             animatorSet.start()
+
+            refreshView.mLoadingView.exchangeColor()
         }
     }
 

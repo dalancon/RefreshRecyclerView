@@ -9,8 +9,13 @@
         android:id="@+id/mTextView"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:gravity="center"
         android:text="DEFAULT HEADER VIEW "
-        android:textSize="20sp"
-        android:gravity="center"/>
+        android:textSize="20sp" />
+
+    <com.dalancon.recyclerviewenhance.widget.LoadingView
+        android:id="@+id/mLoadingView"
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
 
 </LinearLayout>
