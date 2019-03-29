@@ -1,5 +1,7 @@
 package com.dalancon.recyclerviewenhance.widget
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Context
@@ -14,13 +16,16 @@ import kotlinx.android.synthetic.main.header_layout.view.*
  * Created by dalancon on 2019/3/28.
  */
 class DefaultRefreshView(var context: Context) : RefreshViewCreator() {
+
+    var animatorExecuting = false
+
     override fun createRefreshView(parent: ViewGroup): View {
         return LayoutInflater.from(context).inflate(R.layout.header_layout, parent, false)
     }
 
     override fun pullRefresh(refreshView: View, dy: Int) {
-
-        if (dy == 0) {
+        if (dy == 0 && !animatorExecuting) {
+            animatorExecuting = true
             var scale = 1 - 0.9f * Math.abs(dy) / Math.abs(refreshView.measuredHeight)
 
             Log.e("DefaultRefreshView", "scale -> $scale")
@@ -31,6 +36,12 @@ class DefaultRefreshView(var context: Context) : RefreshViewCreator() {
             animatorSet.duration = 1000
             animatorSet.playTogether(scaleX, scaleY)
             animatorSet.start()
+            animatorSet.addListener(object : AnimatorListenerAdapter() {
+
+                override fun onAnimationEnd(animation: Animator?) {
+                    animatorExecuting = false
+                }
+            })
 
             refreshView.mLoadingView.exchangeColor()
         }

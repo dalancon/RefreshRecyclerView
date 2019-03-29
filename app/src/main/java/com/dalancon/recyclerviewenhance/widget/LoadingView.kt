@@ -19,25 +19,28 @@ class LoadingView : LinearLayout {
     lateinit var middleView: LoadingCircleView
     lateinit var rightView: LoadingCircleView
 
+    private var colorNormal = Color.parseColor("#AEEEEE")
+    private var colorSelected = Color.parseColor("#8EE5EE")
+
     var index = 0
 
     var mHandler = object : Handler() {
         override fun handleMessage(msg: Message?) {
             when (index % 3) {
                 0 -> {
-                    leftView.changeColor(Color.parseColor("#AEEEEE"))
-                    middleView.changeColor(Color.parseColor("#8EE5EE"))
-                    rightView.changeColor(Color.parseColor("#8EE5EE"))
+                    leftView.changeColor(colorSelected)
+                    middleView.changeColor(colorNormal)
+                    rightView.changeColor(colorNormal)
                 }
                 1 -> {
-                    leftView.changeColor(Color.parseColor("#8EE5EE"))
-                    middleView.changeColor(Color.parseColor("#AEEEEE"))
-                    rightView.changeColor(Color.parseColor("#8EE5EE"))
+                    leftView.changeColor(colorNormal)
+                    middleView.changeColor(colorSelected)
+                    rightView.changeColor(colorNormal)
                 }
                 2 -> {
-                    leftView.changeColor(Color.parseColor("#8EE5EE"))
-                    middleView.changeColor(Color.parseColor("#8EE5EE"))
-                    rightView.changeColor(Color.parseColor("#AEEEEE"))
+                    leftView.changeColor(colorNormal)
+                    middleView.changeColor(colorNormal)
+                    rightView.changeColor(colorSelected)
                 }
             }
             index++

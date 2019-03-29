@@ -13,6 +13,8 @@ import android.view.View
  */
 class LoadingCircleView : View {
 
+    private var mCurrentColor = Color.parseColor("#8EE5EE")
+
     //半径
     private var mRadius = 0f
 
@@ -24,7 +26,7 @@ class LoadingCircleView : View {
         mPaint = Paint()
         mPaint.isAntiAlias = true
         mPaint.isDither = true
-        mPaint.color = Color.parseColor("#8EE5EE")
+        mPaint.color = mCurrentColor
         //#AEEEEE
     }
 
@@ -52,8 +54,11 @@ class LoadingCircleView : View {
     }
 
     fun changeColor(color: Int) {
-        mPaint.color = color
-        invalidate()
+        if (mCurrentColor != color) {
+            mCurrentColor = color
+            mPaint.color = color
+            invalidate()
+        }
     }
 
 }
